@@ -1,0 +1,52 @@
+﻿@page
+@model CloudAgent.Pages.Connections.IndexModel
+@{
+    ViewData["Title"] = "Connections";
+}
+
+<a class="btn btn-primary mt-3" role="button" href="~/Connections/CreateInvitation">Create Invitation</a>
+
+@if (Model.Connections.Any())
+{
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Status</th>                
+                <th scope="col">Created</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Connections)
+            {
+                <tr>
+                    <td>
+                        @if (item.State == ConnectionState.Connected)
+                        {
+                            @*<img src="@Url.Identicon(item.Alias.Name, size: 50)" style="width: 25px; height: 25px" />*@
+                            <img src="@item.Alias.ImageUrl" style="width: 25px; height: 25px" />                            
+                        }
+                        <a asp-area="" asp-page="Detail" asp-route-id="@item.Id">@item.Id</a>
+                    </td>
+                    <td>
+                        @item.Alias?.Name
+                    </td>
+                    <td>
+                        @item.State
+                    </td>
+                    <td>
+                        @item.CreatedAtUtc.Value.ToLocalTime()
+                    </td>
+                    <td>
+                        <form method="POST">
+                            <input type="hidden" name="connectionId" value="@item.Id"/>
+                            <button class="btn btn-danger btn-sm" asp-page-handler="remove">remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

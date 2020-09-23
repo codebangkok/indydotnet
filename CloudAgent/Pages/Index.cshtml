@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="card text-center mt-2 w-50">
+    <div class="card-header">
+        Agent Provisioning Configuration
+    </div>
+    <div class="card-body">
+        @*<img style="width: 100px; height: 100px" src="@Url.Identicon(@Model.Provisioning.Owner.Name, size: 200)" alt="@Model.Provisioning.Owner.Name">*@
+        <img style="width: 100px; height: 100px" src="@Model.Provisioning.Owner.ImageUrl" alt="@Model.Provisioning.Owner.Name">
+        <h5 class="card-title mt-2">@Model.Provisioning.Owner.Name</h5>
+        <small class="text-muted">@Model.Provisioning.Endpoint.Uri</small>
+    </div>
+    <ul class="list-group list-group-flush text-left">
+        <li class="list-group-item" data-toggle="tooltip" data-placement="top" title="DID"><b>DID:</b> @Model.Provisioning.Endpoint.Did</li>
+        <li class="list-group-item" data-toggle="tooltip" data-placement="top" title="VERKEY"><b>Verkey:</b> @Model.Provisioning.Endpoint.Verkey.First()</li>
+    </ul>
+</div>

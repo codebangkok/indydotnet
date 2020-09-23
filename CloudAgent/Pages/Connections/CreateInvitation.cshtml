@@ -1,0 +1,23 @@
+﻿@page
+@model CloudAgent.Pages.Connections.CreateInvitationModel
+@{
+    ViewData["Title"] = "Create Invitation";
+}
+
+<div class="card text-center mt-2" style="width: 18rem">
+    <div class="card-header">
+        Invitation Details
+    </div>
+    @* <img class="card-img" src="@Model.QRCode" /> *@
+    <div class="card-body">
+        <p>
+            <a href="#" data-toggle="modal" data-target="#exampleModalCenter">Open in app</a>
+        </p>
+        <form class="input-group mb-3">
+            <input readonly="readonly" type="text" id="invitationDetails" autocomplete="off" class="form-control" value="@Model.Invitation" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-info" onclick="copyToCliboard(document.getElementById('invitationDetails'));return false;">Copy</button>
+            </div>
+        </form>
+    </div>
+</div>
